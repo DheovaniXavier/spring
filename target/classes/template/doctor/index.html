@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org"
+                   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head th:include="layout :: htmlhead"></head>
+<body>
+    <nav th:replace="layout :: menu">(menu)</nav>
+
+    <div class="container">
+        <h1>Doctor</h1>
+        <a href="/doctor/new" class="btn btn-primary">Novo</a>
+        <table class="table" id="doctors">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>NAME</th>
+                    <th>CRM</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="obj: ${doctorsList}">
+                    <td th:text="${obj.id}"></td>
+                    <td th:text="${obj.name}"></td>
+                    <td th:text="${obj.crm}"></td>
+                    <td>
+                        <a th:href="@{'/doctor/update/'+${obj.id}}" class="btn btn-primary">Update</a>
+                        <button class="btn btn-danger js-delete" th:data-id="${obj.id}" >Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div th:include="layout :: footer">(footer)</div>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#doctors").on('click', '.js-delete', function(){
+                let button = $(this);
+                bootbox.confirm({
+                    message: "Are you sure you want to delete?",
+                    className: 'bb-alternate-modal',
+                    callback: function(result) {
+                        if(result) {
+                            $.ajax({
+                                url: '/doctor/delete/' + button.attr("data-id"),
+                                method: 'GET',
+                                success: function() {
+                                    window.location.href = '/doctor/';
+                                }
+                            });
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

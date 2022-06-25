@@ -1,0 +1,21 @@
+body {
+    background-color: lightblue;
+}
+
+td {
+    border-color: rgba(0, 0, 0, 0.425);
+}
+
+input {
+    margin-bottom: 0.5em;
+}
+
+a {
+    display: flex;
+    justify-content: flex-end;
+}
+
+button.bootbox-close-button.close {
+    display: none;
+    visibility: hidden;
+}
