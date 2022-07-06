@@ -12,7 +12,7 @@
             <form th:action="@{/patient/(form)}" 
                   th:object="${patient}" method="POST">
                 <input type="hidden" th:field="*{id}">
-                <div class="form-group">
+                <div class="form-group" style="margin:10px 0px;">
                     <div class="row">
                         <div class="col-6">
                             <label for="name-label">Name:</label>
@@ -44,19 +44,24 @@
                                 type="date" id="birthDate-label">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label>City</label>
-                        <select class="form-select"
-                            th:field="*{cityId}">
-                            <option th:each="city : ${cities}"
-                                    th:value="${city.id}"
-                                    th:text="${city.name}"></option>
-                        </select>
-                        <p th:if="${#fields.hasErrors('city')}"
-                            th:errors="*{city}"
-                            class="alert alert-danger" />
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="selector">City</label>
+                                <select class="form-select"
+                                    th:field="*{cityId}"
+                                    id="selector">
+                                    <option th:each="city : ${cities}"
+                                            th:value="${city.id}"
+                                            th:text="${city.name}"></option>
+                                </select>
+                                <p th:if="${#fields.hasErrors('city')}"
+                                    th:errors="*{city}"
+                                    class="alert alert-danger" />
+                            </div>
+                        </div>
                     </div>
-                </div><br>
+                </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
                 <a href="/patient" class="btn btn-primary">Cancel</a>
             </form>
