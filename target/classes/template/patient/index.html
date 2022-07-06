@@ -24,11 +24,7 @@
                     <td th:text="${obj.name}"></td>
                     <td th:text="${obj.sex}"></td>
                     <td th:text="${obj.birthDate}"></td>
-<<<<<<< HEAD
-                    <td>
-=======
                     <td class="d-flex">
->>>>>>> dev
                         <a th:href="@{'/patient/update/'+${obj.id}}" class="btn btn-primary">Update</a>
                         <button class="btn btn-danger js-delete" th:data-id="${obj.id}" >Delete</button>
                     </td>
