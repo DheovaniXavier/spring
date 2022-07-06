@@ -25,6 +25,8 @@ public class PatientDTO {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthDate;
+    private CityDTO city;
+    private long cityId;
     
     public long getId() {
         return id;
@@ -57,5 +59,21 @@ public class PatientDTO {
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
-    
+
+    public CityDTO getCity() {
+        return city;
+    }
+
+    public void setCity(CityDTO city) {
+        this.city = city;
+    }
+
+    public long getCityId() {
+        return cityId;
+    }
+
+    public void setCityId(long cityId) {
+        this.cityId = cityId;
+    }
+
 }

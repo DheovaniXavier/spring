@@ -6,4 +6,4 @@ import org.springframework.stereotype.Repository;
 import br.univille.dacs2022.entity.Procedure;
 
 @Repository
-public interface ProcedureRepository extends JpaRepository<Procedure, Long>{}
+public interface ProcedureRepository extends JpaRepository<Procedure, Long> {}

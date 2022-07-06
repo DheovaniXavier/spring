@@ -1,5 +1,6 @@
 package br.univille.dacs2022.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -14,7 +15,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.univille.dacs2022.dto.CityDTO;
 import br.univille.dacs2022.dto.PatientDTO;
+import br.univille.dacs2022.service.CityService;
 import br.univille.dacs2022.service.PatientService;
 
 @Controller
@@ -22,42 +25,60 @@ import br.univille.dacs2022.service.PatientService;
 public class PatientController {
     
     @Autowired
-    private PatientService service;
+    private PatientService patientService;
+
+    @Autowired
+    private CityService cityService;
 
     @GetMapping
     public ModelAndView index() {
-        List<PatientDTO> patientsList = service.getAll();
+        List<PatientDTO> patientsList = patientService.getAll();
 
         return new ModelAndView("patient/index", "patientsList", patientsList);
     }
 
     @GetMapping("/new")
     public ModelAndView newPatient() {
-        var patient = new PatientDTO();
+        PatientDTO patient = new PatientDTO();
+        List<CityDTO> cities = cityService.getAll();
+        HashMap<String, Object> data = new HashMap<>();
+        data.put("patient", patient);
+        data.put("cities", cities);
 
-        return new ModelAndView("patient/form", "patient", patient);
+        return new ModelAndView("patient/form", data);
     }
     
     @PostMapping(params="form")
     public ModelAndView save(@Valid @ModelAttribute("patient") PatientDTO patient, BindingResult bindingResult) {
+        CityDTO city = cityService.findByID(patient.getCityId());
+        patient.setCity(city);
+
         if(bindingResult.hasErrors()) {
-            return new ModelAndView("patient/form");
+            List<CityDTO> cities = cityService.getAll();
+            HashMap<String,Object> data = new HashMap<>();
+            data.put("cities", cities);
+            return new ModelAndView("paciente/form", data);
         }
-        service.save(patient);
+
+        patientService.save(patient);
 
         return new ModelAndView("redirect:/patient");
     }
 
     @GetMapping(path = "/update/{id}")
     public ModelAndView update(@PathVariable("id") long id) {
-        PatientDTO patient = service.findById(id);
+        PatientDTO patient = patientService.findById(id);
+        List<CityDTO> cities = cityService.getAll();
+        HashMap<String,Object> data = new HashMap<>();
+        data.put("patient", patient);
+        data.put("cities", cities);
 
         return new ModelAndView("patient/form", "patient", patient);
     }
 
     @GetMapping(path = "/delete/{id}")
     public ModelAndView delete(@PathVariable("id") long id) {
-        service.delete(id);
+        patientService.delete(id);
 
         return new ModelAndView("redirect:/patient");
     }
