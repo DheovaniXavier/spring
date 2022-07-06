@@ -50,7 +50,7 @@ public class PatientController {
     
     @PostMapping(params="form")
     public ModelAndView save(@Valid @ModelAttribute("patient") PatientDTO patient, BindingResult bindingResult) {
-        CityDTO city = cityService.findByID(patient.getId());
+        CityDTO city = cityService.findByID(patient.getCityId());
         patient.setCity(city);
 
         if(bindingResult.hasErrors()) {

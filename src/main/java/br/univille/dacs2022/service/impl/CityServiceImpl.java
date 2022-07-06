@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import br.univille.dacs2022.dto.CityDTO;
 import br.univille.dacs2022.entity.City;
@@ -11,6 +12,7 @@ import br.univille.dacs2022.mapper.CityMapper;
 import br.univille.dacs2022.repository.CityRepository;
 import br.univille.dacs2022.service.CityService;
 
+@Service
 public class CityServiceImpl implements CityService {
 
     @Autowired
