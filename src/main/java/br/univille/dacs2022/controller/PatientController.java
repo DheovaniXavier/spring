@@ -66,7 +66,7 @@ public class PatientController {
             HashMap<String,Object> data = new HashMap<>();
             data.put("cities", cities);
             data.put("plans", plans);
-            return new ModelAndView("paciente/form", data);
+            return new ModelAndView("patient/form", data);
         }
 
         patientService.save(patient);

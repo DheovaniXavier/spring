@@ -18,8 +18,6 @@ public class HealthPlanServiceImpl implements HealthPlanService {
 
     @Autowired
     private HealthPlanRepository repository;
-
-    @Autowired
     private HealthPlanMapper mapper = Mappers.getMapper(HealthPlanMapper.class);
 
     @Override

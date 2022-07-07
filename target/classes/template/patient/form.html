@@ -12,7 +12,7 @@
             <form th:action="@{/patient/(form)}" 
                   th:object="${patient}" method="POST">
                 <input type="hidden" th:field="*{id}">
-                <div class="form-group" style="margin:10px 0px;">
+                <div class="form-group">
                     <div class="row">
                         <div class="col-6">
                             <label for="name-label">Name:</label>
@@ -55,9 +55,6 @@
                                             th:value="${city.id}"
                                             th:text="${city.name}"></option>
                                 </select>
-                                <p th:if="${#fields.hasErrors('city')}"
-                                    th:errors="*{city}"
-                                    class="alert alert-danger" />
                             </div>
                         </div>
                     </div>
@@ -72,10 +69,29 @@
                                             th:value="${plan.id}"
                                             th:text="${plan.name}"></option>    
                                 </select>
-                                <p th:if="${#fields.hasErrors('plan')}"
-                                    th:errors="*{plan}"
-                                    class="alert alert-danger" />
                             </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <table class="table" id="patients">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>NAME</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="obj: ${plans}">
+                                        <td th:text="${obj.id}"></td>
+                                        <td th:text="${obj.name}"></td>
+                                        <td class="d-flex">
+                                            <button class="btn btn-danger js-delete" th:data-id="${obj.id}" >Delete</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
