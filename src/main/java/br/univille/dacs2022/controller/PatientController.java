@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.univille.dacs2022.dto.CityDTO;
@@ -54,8 +55,24 @@ public class PatientController {
 
         return new ModelAndView("patient/form", data);
     }
+
+    @PostMapping(params="newplan")
+    public ModelAndView newPlan(@Valid @ModelAttribute("patient") PatientDTO patient, BindingResult bindingResult) {
+        Long planId = patient.getHealthPlanId();
+        HealthPlanDTO plan = planService.findById(planId);
+        patient.getPlans().add(plan);
+
+        List<CityDTO> cities = cityService.getAll();
+        List<HealthPlanDTO> plans = planService.getAll();
+        HashMap<String, Object> data = new HashMap<>();
+        data.put("patient", patient);
+        data.put("cities", cities);
+        data.put("plans", plans);
+
+        return new ModelAndView("patient/form", data);
+    }
     
-    @PostMapping(params="form")
+    @PostMapping(params="save")
     public ModelAndView save(@Valid @ModelAttribute("patient") PatientDTO patient, BindingResult bindingResult) {
         CityDTO city = cityService.findByID(patient.getCityId());
         patient.setCity(city);
@@ -84,14 +101,28 @@ public class PatientController {
         data.put("cities", cities);
         data.put("plans", plans);
 
-        return new ModelAndView("patient/form", "patient", patient);
+        return new ModelAndView("patient/form", data);
     }
 
     @GetMapping(path = "/delete/{id}")
-    public ModelAndView delete(@PathVariable("id") long id) {
+    public ModelAndView deletePatient(@PathVariable("id") long id) {
         patientService.delete(id);
 
         return new ModelAndView("redirect:/patient");
+    }
+
+    @PostMapping(params="deleteplan")
+    public ModelAndView deletePlan(@ModelAttribute("patient") PatientDTO patient, @RequestParam(name = "deleteplan") int index, BindingResult bindingResult) {
+        patient.getPlans().remove(index);
+
+        List<CityDTO> cities = cityService.getAll();
+        List<HealthPlanDTO> plans = planService.getAll();
+        HashMap<String, Object> data = new HashMap<>();
+        data.put("patient", patient);
+        data.put("cities", cities);
+        data.put("plans", plans);
+
+        return new ModelAndView("patient/form", data);
     }
 
 }

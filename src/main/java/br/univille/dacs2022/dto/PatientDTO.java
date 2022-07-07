@@ -1,6 +1,8 @@
 package br.univille.dacs2022.dto;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -27,7 +29,7 @@ public class PatientDTO {
     private Date birthDate;
     private CityDTO city;
     private long cityId;
-    private HealthPlanDTO healthPlan;
+    private List<HealthPlanDTO>  healthPlan= new ArrayList<>();
     private long healthPlanId;
     
     public long getId() {
@@ -78,11 +80,11 @@ public class PatientDTO {
         this.cityId = cityId;
     }
 
-    public HealthPlanDTO getHealthPlan() {
+    public List<HealthPlanDTO> getPlans() {
         return healthPlan;
     }
 
-    public void setHealthPlan(HealthPlanDTO healthPlan) {
+    public void setPlans(List<HealthPlanDTO> healthPlan) {
         this.healthPlan = healthPlan;
     }
 

@@ -75,5 +75,15 @@ public class Patient {
     public void setCity(City city) {
         this.city = city;
     }
+
+    public List<HealthPlan> getPlans() {
+        return healthPlan;
+    }
+
+    public void setPlans(List<HealthPlan> healthPlan) {
+        this.healthPlan = healthPlan;
+    }
+
+    
     
 }

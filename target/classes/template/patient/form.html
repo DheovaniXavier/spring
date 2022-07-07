@@ -72,6 +72,7 @@
                             </div>
                         </div>
                     </div>
+                    <button type="submit" name="newplan" class="btn btn-primary" style="margin: 10px 0">New Plan</button>
                     <div class="row">
                         <div class="form-group">
                             <table class="table" id="patients">
@@ -83,11 +84,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr th:each="obj: ${plans}">
-                                        <td th:text="${obj.id}"></td>
+                                    <tr th:each="obj, stat: ${patient.plans}">
                                         <td th:text="${obj.name}"></td>
+                                        <input type="hidden" th:field="${patient.plans[__${stat.index}__].id}"/>
+                                        <input type="hidden" th:field="${patient.plans[__${stat.index}__].name}"/>
                                         <td class="d-flex">
-                                            <button class="btn btn-danger js-delete" th:data-id="${obj.id}" >Delete</button>
+                                            <button type="submit" name="deleteplan" th:value="__${stat.index}__" class="btn btn-primary">Delete</button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -95,7 +97,7 @@
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" name="save" class="btn btn-primary">Submit</button>
                 <a href="/patient" class="btn btn-primary">Cancel</a>
             </form>
         </div>
