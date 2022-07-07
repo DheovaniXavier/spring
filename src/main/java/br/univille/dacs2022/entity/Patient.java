@@ -2,6 +2,7 @@ package br.univille.dacs2022.entity;
 
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -30,6 +32,9 @@ public class Patient {
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
     private City city;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<HealthPlan> healthPlan;
 
     public long getId() {
         return this.id;

@@ -27,6 +27,8 @@ public class PatientDTO {
     private Date birthDate;
     private CityDTO city;
     private long cityId;
+    private HealthPlanDTO healthPlan;
+    private long healthPlanId;
     
     public long getId() {
         return id;
@@ -74,6 +76,22 @@ public class PatientDTO {
 
     public void setCityId(long cityId) {
         this.cityId = cityId;
+    }
+
+    public HealthPlanDTO getHealthPlan() {
+        return healthPlan;
+    }
+
+    public void setHealthPlan(HealthPlanDTO healthPlan) {
+        this.healthPlan = healthPlan;
+    }
+
+    public long getHealthPlanId() {
+        return healthPlanId;
+    }
+
+    public void setHealthPlanId(long healthPlanId) {
+        this.healthPlanId = healthPlanId;
     }
 
 }

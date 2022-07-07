@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.univille.dacs2022.dto.CityDTO;
+import br.univille.dacs2022.dto.HealthPlanDTO;
 import br.univille.dacs2022.dto.PatientDTO;
 import br.univille.dacs2022.service.CityService;
+import br.univille.dacs2022.service.HealthPlanService;
 import br.univille.dacs2022.service.PatientService;
 
 @Controller
@@ -30,6 +32,9 @@ public class PatientController {
     @Autowired
     private CityService cityService;
 
+    @Autowired
+    private HealthPlanService planService;
+
     @GetMapping
     public ModelAndView index() {
         List<PatientDTO> patientsList = patientService.getAll();
@@ -41,9 +46,11 @@ public class PatientController {
     public ModelAndView newPatient() {
         PatientDTO patient = new PatientDTO();
         List<CityDTO> cities = cityService.getAll();
+        List<HealthPlanDTO> plans = planService.getAll();
         HashMap<String, Object> data = new HashMap<>();
         data.put("patient", patient);
         data.put("cities", cities);
+        data.put("plans", plans);
 
         return new ModelAndView("patient/form", data);
     }
@@ -55,8 +62,10 @@ public class PatientController {
 
         if(bindingResult.hasErrors()) {
             List<CityDTO> cities = cityService.getAll();
+            List<HealthPlanDTO> plans = planService.getAll();
             HashMap<String,Object> data = new HashMap<>();
             data.put("cities", cities);
+            data.put("plans", plans);
             return new ModelAndView("paciente/form", data);
         }
 
@@ -69,9 +78,11 @@ public class PatientController {
     public ModelAndView update(@PathVariable("id") long id) {
         PatientDTO patient = patientService.findById(id);
         List<CityDTO> cities = cityService.getAll();
+        List<HealthPlanDTO> plans = planService.getAll();
         HashMap<String,Object> data = new HashMap<>();
         data.put("patient", patient);
         data.put("cities", cities);
+        data.put("plans", plans);
 
         return new ModelAndView("patient/form", "patient", patient);
     }

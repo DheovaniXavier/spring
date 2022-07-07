@@ -6,7 +6,8 @@ import br.univille.dacs2022.dto.CityDTO;
 
 public interface CityService {
 
-    public List<CityDTO> getAll();
-    public CityDTO findByID(long id);
+    List<CityDTO> getAll();
+
+    CityDTO findByID(long id);
     
 }

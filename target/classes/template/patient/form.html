@@ -61,6 +61,23 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="plan">Health Plans</label>
+                                <select class="form-select"
+                                        th:field="*{healthPlanId}"
+                                        id="plan">
+                                    <option th:each="plan : ${plans}"
+                                            th:value="${plan.id}"
+                                            th:text="${plan.name}"></option>    
+                                </select>
+                                <p th:if="${#fields.hasErrors('plan')}"
+                                    th:errors="*{plan}"
+                                    class="alert alert-danger" />
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
                 <a href="/patient" class="btn btn-primary">Cancel</a>
