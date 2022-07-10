@@ -20,7 +20,7 @@ public class Doctor {
     private String crm;
 
     @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
-    private List<Procedure> procedure = new ArrayList<>();
+    private List<Procedure> procedures = new ArrayList<>();
 
     public long getId() {
         return id;
@@ -47,11 +47,11 @@ public class Doctor {
     }
 
     public List<Procedure> getProcedure() {
-        return procedure;
+        return procedures;
     }
 
-    public void setProcedure(List<Procedure> procedure) {
-        this.procedure = procedure;
+    public void setProcedure(List<Procedure> procedures) {
+        this.procedures = procedures;
     }
     
 }

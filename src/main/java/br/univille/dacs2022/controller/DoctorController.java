@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.univille.dacs2022.dto.DoctorDTO;
@@ -25,14 +26,14 @@ import br.univille.dacs2022.service.ProcedureService;
 public class DoctorController {
 
     @Autowired
-    private DoctorService service;
+    private DoctorService doctorService;
 
     @Autowired
     private ProcedureService procedureService;
 
     @GetMapping
     public ModelAndView index() {
-        List<DoctorDTO> doctorsList = service.getAll();
+        List<DoctorDTO> doctorsList = doctorService.getAll();
 
         return new ModelAndView("doctor/index", "doctorsList", doctorsList);
     }
@@ -47,29 +48,60 @@ public class DoctorController {
 
         return new ModelAndView("doctor/form", map);
     }
+
+    @PostMapping(params="newproc")
+    public ModelAndView newProc(@Valid @ModelAttribute("doctor") DoctorDTO doctor, BindingResult bindingResult) {
+        Long procId = doctor.getProcedureId();
+        ProcedureDTO proc = procedureService.findById(procId);
+        doctor.getProcedures().add(proc);
+
+        List<ProcedureDTO> procedures = procedureService.getAll();
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("doctor", doctor);
+        map.put("procedures", procedures);
+
+        return new ModelAndView("doctor/form", map);
+    }
     
-    @PostMapping(params="doctorsave")
+    @PostMapping(params="save")
     public ModelAndView save(@Valid @ModelAttribute("doctor") DoctorDTO doctor, BindingResult bindingResult) {
         if(bindingResult.hasErrors()) {
-            return new ModelAndView("doctor/form");
+            List<ProcedureDTO> procedures = procedureService.getAll();
+            return new ModelAndView("doctor/form", "procedures", procedures);
         }
-        service.save(doctor);
+        doctorService.save(doctor);
 
         return new ModelAndView("redirect:/doctor");
     }
 
     @GetMapping(path = "/update/{id}")
     public ModelAndView update(@PathVariable("id") long id) {
-        DoctorDTO doctor = service.findById(id);
+        DoctorDTO doctor = doctorService.findById(id);
+        List<ProcedureDTO> procedures = procedureService.getAll();
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("doctor", doctor);
+        map.put("procedures", procedures);
 
-        return new ModelAndView("doctor/form", "doctor", doctor);
+        return new ModelAndView("doctor/form", map);
     }
 
     @GetMapping(path = "/delete/{id}")
     public ModelAndView delete(@PathVariable("id") long id) {
-        service.delete(id);
+        doctorService.delete(id);
 
         return new ModelAndView("redirect:/doctor");
     }
-    
+
+    @PostMapping(params="delproc")
+    public ModelAndView deleteProc(@ModelAttribute("doctor") DoctorDTO doctor, @RequestParam(name = "delproc") int index, BindingResult bindingResult) {
+        doctor.getProcedures().remove(index);
+
+        List<ProcedureDTO> procedures = procedureService.getAll();
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("doctor", doctor);
+        map.put("procedures", procedures);
+
+        return new ModelAndView("doctor/form", map);
+    }
+
 }

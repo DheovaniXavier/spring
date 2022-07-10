@@ -1,13 +1,11 @@
 package br.univille.dacs2022.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-
-
-import br.univille.dacs2022.entity.Procedure;
 
 public class DoctorDTO {
 
@@ -28,7 +26,8 @@ public class DoctorDTO {
         message = "Valor invalido. Inserir valor entre 1 e 9999"
     )
     private String crm;
-    private List<Procedure> procedure;
+    private List<ProcedureDTO> procedures = new ArrayList<>();
+    private long procedureId;
 
     public long getId() {
         return id;
@@ -54,27 +53,35 @@ public class DoctorDTO {
         this.crm = crm;
     }
 
-    public List<Procedure> getProcedures() {
-        return procedure;
-    }
-
-    public void setProcedures(List<Procedure> procedure) {
-        this.procedure = procedure;
-    }
-
-    public String getPerformedProcedures() {
-        String procedures = "";
-
-        for(Procedure value : this.procedure) {
-            procedures += value.getId() + ", ";
-        }
-
-        if(!procedures.equals("") && procedures.contains(", ")) {
-            procedures = procedures.substring(0, procedures.length() - 1);
-            procedures = procedures.substring(0, procedures.length() - 1);
-        }
-
+    public List<ProcedureDTO> getProcedures() {
         return procedures;
+    }
+
+    public void setProcedures(List<ProcedureDTO> procedures) {
+        this.procedures = procedures;
+    }
+
+    public long getProcedureId() {
+        return procedureId;
+    }
+
+    public void setProcedureId(long procedureId) {
+        this.procedureId = procedureId;
+    }
+
+    public String getProcTitles() {
+        String titles = "";
+
+        for(ProcedureDTO proc : this.procedures) {
+            titles += proc.getTitle() + ", ";
+        }
+
+        if(!titles.equals("") && titles.contains(", ")) {
+            titles = titles.substring(0, titles.length() - 1);
+            titles = titles.substring(0, titles.length() - 1);
+        }
+
+        return titles;
     }
 
 }

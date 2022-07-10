@@ -7,11 +7,12 @@
 
     <div class="container">
         <h1>Procedure</h1>
-        <a href="/procedure/new" class="btn btn-primary">Novo</a>
+        <a href="/procedure/new" class="btn btn-primary">New</a>
         <table class="table" id="procedures">
             <thead>
                 <tr>
                     <th>ID</th>
+                    <th>TITLE</th>
                     <th>DESCRIPTION</th>
                     <th></th>
                 </tr>
@@ -19,6 +20,7 @@
             <tbody>
                 <tr th:each="obj: ${proceduresList}">
                     <td th:text="${obj.id}"></td>
+                    <td th:text="${obj.title}"></td>
                     <td th:text="${obj.description}"></td>
                     <td>
                         <a th:href="@{'/procedure/update/'+${obj.id}}" class="btn btn-primary">Update</a>

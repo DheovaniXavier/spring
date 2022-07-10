@@ -85,7 +85,6 @@ public class PatientController {
             data.put("plans", plans);
             return new ModelAndView("patient/form", data);
         }
-
         patientService.save(patient);
 
         return new ModelAndView("redirect:/patient");

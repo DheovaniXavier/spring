@@ -39,30 +39,35 @@
                         <div class="col-6">
                             <label for="select-procedures">Procedures:</label>
                             <select class="form-select"
-                                    th:field="*{procedures}"
+                                    th:field="*{procedureId}"
                                     id="select-procedures">
                                     <option th:each="proc : ${procedures}"
                                             th:value="${proc.id}"
-                                            th:text="${proc.name}"></option>
+                                            th:text="${proc.title}"></option>
                             </select>
                         </div>
                     </div>
+                    <button type="submit" name="newproc" class="btn btn-primary" style="margin: 10px 0">New Procedure</button>
                     <div class="row">
                         <div class="form-group">
                             <table class="table" id="procedure">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
+                                        <th>TITLE</th>
                                         <th>DESCRIPTION</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr th:each="obj, stat: ${doctor.procedure}">
-                                        <td th:text="${obj.name}"></td>
-                                        <input type="hidden" th:field="${doctor.procedure[__${stat.index}__].id}" />
-                                        <input type="hidden" th:field="${doctor.procedure[__${stat.index}__].name}" />
+                                    <tr th:each="obj, stat: ${doctor.procedures}">
+                                        <td th:text="${obj.id}"></td>
+                                        <td th:text="${obj.title}"></td>
+                                        <td th:text="${obj.description}"></td>
+                                        <input type="hidden" th:field="${doctor.procedures[__${stat.index}__].id}" />
+                                        <input type="hidden" th:field="${doctor.procedures[__${stat.index}__].title}" />
+                                        <input type="hidden" th:field="${doctor.procedures[__${stat.index}__].description}" />
                                         <td class="d-flex">
-                                            <button type="submit" name="" th:value="__${stat.index}__" class="btn btn-primary">Delete</button>
+                                            <button type="submit" name="delproc" th:value="__${stat.index}__" class="btn btn-primary">Delete</button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -70,7 +75,7 @@
                         </div>
                     </div>
                 </div>
-                <button type="submit" name="doctorsave" class="btn btn-primary">Submit</button>
+                <button type="submit" name="save" class="btn btn-primary">Submit</button>
                 <a href="/doctor" class="btn btn-primary">Cancel</a>
             </form>
         </div>
