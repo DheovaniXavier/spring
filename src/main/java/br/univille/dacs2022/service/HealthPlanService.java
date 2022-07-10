@@ -8,6 +8,10 @@ public interface HealthPlanService {
 
     List<HealthPlanDTO> getAll();
 
+    HealthPlanDTO save(HealthPlanDTO plan);
+
     HealthPlanDTO findById(long id);
+
+    HealthPlanDTO delete(long id);
     
 }

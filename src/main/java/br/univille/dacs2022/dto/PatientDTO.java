@@ -14,14 +14,14 @@ public class PatientDTO {
 
     private long id;
 
-    @NotBlank(message = "O campo não pode ser deixado em branco")
+    @NotBlank(message = "This field cannot be left empty")
     @NotNull
     private String name;
 
     @Pattern(
         regexp = "MASC|FEM",
         flags = Pattern.Flag.CANON_EQ,
-        message = "Valor inválido, utilize MASC ou FEM"
+        message = "Invalid value, use MASC or FEM"
     )
     private String sex;
 

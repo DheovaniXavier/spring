@@ -27,9 +27,30 @@ public class HealthPlanServiceImpl implements HealthPlanService {
     }
 
     @Override
+    public HealthPlanDTO save(HealthPlanDTO plan) {
+        HealthPlan healthPlan = mapper.mapHealthPlanDTO(plan);
+        repository.save(healthPlan);
+        
+        return mapper.mapHealthPlan(healthPlan);
+    }
+
+    @Override
     public HealthPlanDTO findById(long id) {
         Optional<HealthPlan> plan = repository.findById(id);
         return mapper.mapHealthPlan(plan.get());
+    }
+
+    @Override
+    public HealthPlanDTO delete(long id) {
+        Optional<HealthPlan> planEntity = repository.findById(id);
+
+        if(planEntity.isPresent()) {
+            HealthPlan healthPlan = planEntity.get();
+            repository.delete(healthPlan);
+            return mapper.mapHealthPlan(healthPlan);
+        }
+
+        return null;
     }
     
 }

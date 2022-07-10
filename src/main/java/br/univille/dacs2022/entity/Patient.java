@@ -27,7 +27,7 @@ public class Patient {
     private String name;
     private String sex;
 
-    @Temporal(value = TemporalType.TIMESTAMP)
+    @Temporal(value = TemporalType.DATE)
     private Date birthDate;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})

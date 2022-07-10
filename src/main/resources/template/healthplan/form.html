@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      
+    <head th:include="layout :: htmlhead"></head>
+
+    <body>
+        <nav th:replace="layout :: menu">(menu)</nav>
+
+        <div class="container">
+            <h1>Health Plan</h1>
+            <form th:action="@{/healthplan/(form)}" 
+                  th:object="${plan}" method="POST">
+                <input type="hidden" th:field="*{id}">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="name">Name:</label>
+                            <input class="form-control" 
+                                th:field="*{name}" 
+                                type="text" id="name">
+                            <p th:if="${#fields.hasErrors('name')}"
+                            th:errors="*{name}"
+                            class="alert alert-danger" />
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" name="save" class="btn btn-primary">Submit</button>
+                <a href="/healthplan" class="btn btn-primary">Cancel</a>
+            </form>
+        </div>
+        
+        <div th:include="layout :: footer">(footer)</div>
+    </body>
+</html>

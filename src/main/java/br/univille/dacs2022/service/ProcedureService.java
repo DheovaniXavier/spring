@@ -6,12 +6,12 @@ import br.univille.dacs2022.dto.ProcedureDTO;
 
 public interface ProcedureService {
 
-    public List<ProcedureDTO> getAll();
+    List<ProcedureDTO> getAll();
 
-    public ProcedureDTO save(ProcedureDTO procedure);
+    ProcedureDTO save(ProcedureDTO procedure);
     
-    public ProcedureDTO findById(long id);
+    ProcedureDTO findById(long id);
     
-    public ProcedureDTO delete(long id);
+    ProcedureDTO delete(long id);
     
 }

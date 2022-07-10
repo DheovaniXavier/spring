@@ -49,9 +49,9 @@ public class ProcedureServiceImpl implements ProcedureService {
         Optional<Procedure> procedureEntity = repository.findById(id);
 
         if(procedureEntity.isPresent()) {
-            Procedure patient = procedureEntity.get();
-            repository.delete(patient);
-            return mapper.mapProcedure(patient);
+            Procedure procedure = procedureEntity.get();
+            repository.delete(procedure);
+            return mapper.mapProcedure(procedure);
         }
 
         return null;

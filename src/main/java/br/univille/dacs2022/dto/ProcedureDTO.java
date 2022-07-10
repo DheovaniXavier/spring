@@ -7,11 +7,11 @@ public class ProcedureDTO {
 
     private long id;
 
-    @NotBlank(message = "Insira um título válido.")
+    @NotBlank(message = "Insert a valid title.")
     @NotNull
     private String title;
 
-    @NotBlank(message = "Insira uma descrição válida.")
+    @NotBlank(message = "Insert a valid description.")
     @NotNull
     private String description;
 

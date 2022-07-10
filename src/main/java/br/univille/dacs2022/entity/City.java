@@ -16,6 +16,8 @@ public class City {
     @Column(length = 100)
     private String name;
 
+    private String state;
+
     public long getId() {
         return id;
     }
@@ -30,6 +32,14 @@ public class City {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 
 }

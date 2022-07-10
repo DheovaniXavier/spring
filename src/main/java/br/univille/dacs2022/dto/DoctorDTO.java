@@ -11,19 +11,19 @@ public class DoctorDTO {
 
     private long id;
 
-    @NotBlank(message = "O campo nao pode ser deixado em branco.")
+    @NotBlank(message = "This field cannot be left empty.")
     @NotNull
     @Pattern(
         regexp = "[A-Z]{3,50}",
         flags = Pattern.Flag.CANON_EQ,
-        message = "Nome de usuario invalido."
+        message = "Invalid username."
     )
     private String name;
 
     @Pattern(
         regexp = "[0-9]{1,4}",
         flags = Pattern.Flag.CANON_EQ,
-        message = "Valor invalido. Inserir valor entre 1 e 9999"
+        message = "Invalid value. Insert value between 1 and 9999"
     )
     private String crm;
     private List<ProcedureDTO> procedures = new ArrayList<>();

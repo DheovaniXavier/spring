@@ -8,6 +8,10 @@ public interface CityService {
 
     List<CityDTO> getAll();
 
+    CityDTO save(CityDTO city);
+
     CityDTO findByID(long id);
+
+    CityDTO delete(long id);
     
 }
