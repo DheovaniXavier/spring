@@ -8,8 +8,8 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-07-10T12:36:51-0300",
-    comments = "version: 1.4.2.Final, compiler: Eclipse JDT (IDE) 1.4.100.v20220318-0906, environment: Java 17.0.3 (Eclipse Adoptium)"
+    date = "2022-07-10T18:34:30-0300",
+    comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.15 (Private Build)"
 )
 public class ProcedureMapperImpl implements ProcedureMapper {
 
@@ -49,9 +49,9 @@ public class ProcedureMapperImpl implements ProcedureMapper {
 
         ProcedureDTO procedureDTO = new ProcedureDTO();
 
-        procedureDTO.setDescription( procedure.getDescription() );
         procedureDTO.setId( procedure.getId() );
         procedureDTO.setTitle( procedure.getTitle() );
+        procedureDTO.setDescription( procedure.getDescription() );
 
         return procedureDTO;
     }
@@ -64,9 +64,9 @@ public class ProcedureMapperImpl implements ProcedureMapper {
 
         Procedure procedure1 = new Procedure();
 
-        procedure1.setDescription( procedure.getDescription() );
         procedure1.setId( procedure.getId() );
         procedure1.setTitle( procedure.getTitle() );
+        procedure1.setDescription( procedure.getDescription() );
 
         return procedure1;
     }

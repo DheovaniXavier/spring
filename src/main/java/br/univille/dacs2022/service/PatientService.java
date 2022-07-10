@@ -6,12 +6,12 @@ import br.univille.dacs2022.dto.PatientDTO;
 
 public interface PatientService {
 
-    public List<PatientDTO> getAll();
+    List<PatientDTO> getAll();
 
-    public PatientDTO save(PatientDTO patient);
+    PatientDTO save(PatientDTO patient);
     
-    public PatientDTO findById(long id);
+    PatientDTO findById(long id);
     
-    public PatientDTO delete(long id);
+    PatientDTO delete(long id);
     
 }

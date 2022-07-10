@@ -12,8 +12,8 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-07-10T12:45:24-0300",
-    comments = "version: 1.4.2.Final, compiler: Eclipse JDT (IDE) 1.4.100.v20220318-0906, environment: Java 17.0.3 (Eclipse Adoptium)"
+    date = "2022-07-10T18:34:30-0300",
+    comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.15 (Private Build)"
 )
 public class PatientMapperImpl implements PatientMapper {
 
@@ -53,12 +53,12 @@ public class PatientMapperImpl implements PatientMapper {
 
         PatientDTO patientDTO = new PatientDTO();
 
-        patientDTO.setBirthDate( patient.getBirthDate() );
-        patientDTO.setCity( cityToCityDTO( patient.getCity() ) );
         patientDTO.setId( patient.getId() );
         patientDTO.setName( patient.getName() );
-        patientDTO.setPlans( healthPlanListToHealthPlanDTOList( patient.getPlans() ) );
         patientDTO.setSex( patient.getSex() );
+        patientDTO.setBirthDate( patient.getBirthDate() );
+        patientDTO.setCity( cityToCityDTO( patient.getCity() ) );
+        patientDTO.setPlans( healthPlanListToHealthPlanDTOList( patient.getPlans() ) );
 
         return patientDTO;
     }
@@ -71,12 +71,12 @@ public class PatientMapperImpl implements PatientMapper {
 
         Patient patient1 = new Patient();
 
-        patient1.setBirthDate( patient.getBirthDate() );
-        patient1.setCity( cityDTOToCity( patient.getCity() ) );
         patient1.setId( patient.getId() );
         patient1.setName( patient.getName() );
-        patient1.setPlans( healthPlanDTOListToHealthPlanList( patient.getPlans() ) );
         patient1.setSex( patient.getSex() );
+        patient1.setBirthDate( patient.getBirthDate() );
+        patient1.setCity( cityDTOToCity( patient.getCity() ) );
+        patient1.setPlans( healthPlanDTOListToHealthPlanList( patient.getPlans() ) );
 
         return patient1;
     }
@@ -90,6 +90,7 @@ public class PatientMapperImpl implements PatientMapper {
 
         cityDTO.setId( city.getId() );
         cityDTO.setName( city.getName() );
+        cityDTO.setState( city.getState() );
 
         return cityDTO;
     }
@@ -129,6 +130,7 @@ public class PatientMapperImpl implements PatientMapper {
 
         city.setId( cityDTO.getId() );
         city.setName( cityDTO.getName() );
+        city.setState( cityDTO.getState() );
 
         return city;
     }

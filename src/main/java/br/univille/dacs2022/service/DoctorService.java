@@ -6,12 +6,12 @@ import br.univille.dacs2022.dto.DoctorDTO;
 
 public interface DoctorService {
 
-    public List<DoctorDTO> getAll();
+    List<DoctorDTO> getAll();
 
-    public DoctorDTO save(DoctorDTO doctor);
+    DoctorDTO save(DoctorDTO doctor);
     
-    public DoctorDTO findById(long id);
+    DoctorDTO findById(long id);
     
-    public DoctorDTO delete(long id);
+    DoctorDTO delete(long id);
     
 }
