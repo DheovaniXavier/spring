@@ -14,6 +14,7 @@
                     <th>ID</th>
                     <th>NAME</th>
                     <th>CRM</th>
+                    <th>PERFORMED PROCEDURES</th>
                     <th></th>
                 </tr>
             </thead>
@@ -22,6 +23,7 @@
                     <td th:text="${obj.id}"></td>
                     <td th:text="${obj.name}"></td>
                     <td th:text="${obj.crm}"></td>
+                    <td th:text="${obj.getPerformedProcedures()}"></td>
                     <td>
                         <a th:href="@{'/doctor/update/'+${obj.id}}" class="btn btn-primary">Update</a>
                         <button class="btn btn-danger js-delete" th:data-id="${obj.id}" >Delete</button>

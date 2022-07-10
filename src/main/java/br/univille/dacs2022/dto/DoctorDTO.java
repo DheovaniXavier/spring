@@ -6,6 +6,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+
 import br.univille.dacs2022.entity.Procedure;
 
 public class DoctorDTO {
@@ -59,6 +60,21 @@ public class DoctorDTO {
 
     public void setProcedures(List<Procedure> procedure) {
         this.procedure = procedure;
+    }
+
+    public String getPerformedProcedures() {
+        String procedures = "";
+
+        for(Procedure value : this.procedure) {
+            procedures += value.getId() + ", ";
+        }
+
+        if(!procedures.equals("") && procedures.contains(", ")) {
+            procedures = procedures.substring(0, procedures.length() - 1);
+            procedures = procedures.substring(0, procedures.length() - 1);
+        }
+
+        return procedures;
     }
 
 }

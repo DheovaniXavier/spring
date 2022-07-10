@@ -29,7 +29,7 @@ public class PatientDTO {
     private Date birthDate;
     private CityDTO city;
     private long cityId;
-    private List<HealthPlanDTO>  healthPlan= new ArrayList<>();
+    private List<HealthPlanDTO> healthPlan = new ArrayList<>();
     private long healthPlanId;
     
     public long getId() {
@@ -86,6 +86,21 @@ public class PatientDTO {
 
     public void setPlans(List<HealthPlanDTO> healthPlan) {
         this.healthPlan = healthPlan;
+    }
+
+    public String getHealthPlanNames() {
+        String names = "";
+        for(HealthPlanDTO plan : this.healthPlan) {
+            names += plan.getName() + ", ";
+        }
+
+        // Remover o ", " do último nome
+        if(!names.equals("") && names.contains(", ")) {
+            names = names.substring(0, names.length() - 1);
+            names = names.substring(0, names.length() - 1);
+        }
+
+        return names;
     }
 
     public long getHealthPlanId() {

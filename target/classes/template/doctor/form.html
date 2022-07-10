@@ -35,8 +35,42 @@
                                 class="alert alert-danger" />
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="select-procedures">Procedures:</label>
+                            <select class="form-select"
+                                    th:field="*{procedures}"
+                                    id="select-procedures">
+                                    <option th:each="proc : ${procedures}"
+                                            th:value="${proc.id}"
+                                            th:text="${proc.name}"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <table class="table" id="procedure">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>DESCRIPTION</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="obj, stat: ${doctor.procedure}">
+                                        <td th:text="${obj.name}"></td>
+                                        <input type="hidden" th:field="${doctor.procedure[__${stat.index}__].id}" />
+                                        <input type="hidden" th:field="${doctor.procedure[__${stat.index}__].name}" />
+                                        <td class="d-flex">
+                                            <button type="submit" name="" th:value="__${stat.index}__" class="btn btn-primary">Delete</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" name="doctorsave" class="btn btn-primary">Submit</button>
                 <a href="/doctor" class="btn btn-primary">Cancel</a>
             </form>
         </div>

@@ -8,7 +8,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-07-06T21:00:20-0300",
+    date = "2022-07-09T21:23:45-0300",
     comments = "version: 1.4.2.Final, compiler: Eclipse JDT (IDE) 1.4.100.v20220318-0906, environment: Java 17.0.3 (Eclipse Adoptium)"
 )
 public class DoctorMapperImpl implements DoctorMapper {
@@ -49,9 +49,9 @@ public class DoctorMapperImpl implements DoctorMapper {
 
         DoctorDTO doctorDTO = new DoctorDTO();
 
+        doctorDTO.setCrm( doctor.getCrm() );
         doctorDTO.setId( doctor.getId() );
         doctorDTO.setName( doctor.getName() );
-        doctorDTO.setCrm( doctor.getCrm() );
 
         return doctorDTO;
     }
@@ -64,9 +64,9 @@ public class DoctorMapperImpl implements DoctorMapper {
 
         Doctor doctor1 = new Doctor();
 
+        doctor1.setCrm( doctor.getCrm() );
         doctor1.setId( doctor.getId() );
         doctor1.setName( doctor.getName() );
-        doctor1.setCrm( doctor.getCrm() );
 
         return doctor1;
     }

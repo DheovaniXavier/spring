@@ -1,5 +1,6 @@
 package br.univille.dacs2022.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -15,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.univille.dacs2022.dto.DoctorDTO;
+import br.univille.dacs2022.dto.ProcedureDTO;
 import br.univille.dacs2022.service.DoctorService;
+import br.univille.dacs2022.service.ProcedureService;
 
 @Controller
 @RequestMapping("/doctor")
@@ -23,6 +26,9 @@ public class DoctorController {
 
     @Autowired
     private DoctorService service;
+
+    @Autowired
+    private ProcedureService procedureService;
 
     @GetMapping
     public ModelAndView index() {
@@ -33,12 +39,16 @@ public class DoctorController {
 
     @GetMapping("/new")
     public ModelAndView newDoctor() {
-        var doctor = new DoctorDTO();
+        DoctorDTO doctor = new DoctorDTO();
+        List<ProcedureDTO> procedures = procedureService.getAll();
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("doctor", doctor);
+        map.put("procedures", procedures);
 
-        return new ModelAndView("doctor/form", "doctor", doctor);
+        return new ModelAndView("doctor/form", map);
     }
     
-    @PostMapping(params="form")
+    @PostMapping(params="doctorsave")
     public ModelAndView save(@Valid @ModelAttribute("doctor") DoctorDTO doctor, BindingResult bindingResult) {
         if(bindingResult.hasErrors()) {
             return new ModelAndView("doctor/form");
