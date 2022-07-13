@@ -1,6 +1,5 @@
 package br.univille.dacs2022.entity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -20,7 +19,7 @@ public class Doctor {
     private String crm;
 
     @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
-    private List<Procedure> procedures = new ArrayList<>();
+    private List<Procedure> procedures;
 
     public long getId() {
         return id;

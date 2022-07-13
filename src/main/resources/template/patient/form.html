@@ -85,6 +85,7 @@
                                 </thead>
                                 <tbody>
                                     <tr th:each="obj, stat: ${patient.plans}">
+                                        <td th:text="${obj.id}"></td>
                                         <td th:text="${obj.name}"></td>
                                         <input type="hidden" th:field="${patient.plans[__${stat.index}__].id}"/>
                                         <input type="hidden" th:field="${patient.plans[__${stat.index}__].name}"/>
