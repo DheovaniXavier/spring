@@ -45,11 +45,11 @@ public class Doctor {
         this.crm = crm;
     }
 
-    public List<Procedure> getProcedure() {
+    public List<Procedure> getProcedures() {
         return procedures;
     }
 
-    public void setProcedure(List<Procedure> procedures) {
+    public void setProcedures(List<Procedure> procedures) {
         this.procedures = procedures;
     }
     
