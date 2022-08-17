@@ -1,4 +1,5 @@
 {
+    "version": "0.2.0",
     "configurations": [
         {
             "type": "java",
@@ -6,8 +7,39 @@
             "request": "launch",
             "cwd": "${workspaceFolder}",
             "console": "internalConsole",
-            "mainClass": "br.univille.dacs2022.Dacs2022Application",
+            "mainClass": "br.univille.dacs2022",
             "projectName": "dacs2022",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-CoreDacs2022Application<coredacs2022>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "br.univille.coredacs2022",
+            "projectName": "dacs2022",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-APIDacs2022Application<api>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "br.univille.apidacs2022",
+            "projectName": "apidacs2022",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-Apidacs2022Application<apidacs2022>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "br.univille.apidacs2022.Apidacs2022Application",
+            "projectName": "apidacs2022",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
         }
