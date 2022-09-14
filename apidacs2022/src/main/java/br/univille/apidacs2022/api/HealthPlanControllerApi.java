@@ -32,7 +32,7 @@ public class HealthPlanControllerApi {
 
     @GetMapping("/name/{name}")
     public ResponseEntity<List<HealthPlan>> getByName(@PathVariable("name") String name) {
-        List<HealthPlan> healthPlans = service.getAll();
+        List<HealthPlan> healthPlans = service.getByName(name);
         return new ResponseEntity<List<HealthPlan>>(healthPlans, HttpStatus.OK);
     }
 
@@ -77,6 +77,7 @@ public class HealthPlanControllerApi {
             return ResponseEntity.notFound().build();
         }
         
+        service.delete(id);
         return ResponseEntity.accepted().build();
     }
     
