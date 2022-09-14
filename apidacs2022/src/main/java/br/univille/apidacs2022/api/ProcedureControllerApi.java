@@ -43,7 +43,7 @@ public class ProcedureControllerApi {
         return new ResponseEntity<>(procedure, HttpStatus.OK);
     }
 
-    @PostMapping("/{id}")
+    @PostMapping
     public ResponseEntity<Procedure> insertProcedure(@RequestBody Procedure procedure) {
         if (procedure.getId() == 0) {
             service.save(procedure);

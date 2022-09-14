@@ -111,21 +111,21 @@ class Apidacs2022ApplicationTests {
 		String result = mvcResult.getResponse().getContentAsString();
 		JSONObject jsonObject = new JSONObject(result);
 
-		mock.perform(get("/api/v1/healthplan" + jsonObject.getString("id")))
+		mock.perform(get("/api/v1/healthplan/" + jsonObject.getString("id")))
 			.andExpect(status().isOk())
 			.andExpect(jsonPath("$.name", is("UNIMED")));
 
 		mock.perform(
-			put("/api/v1/healthplan" + jsonObject.getString("id"))
+			put("/api/v1/healthplan/" + jsonObject.getString("id"))
 			.content("{\"name\":\"SUS\"}")
 			.contentType(MediaType.APPLICATION_JSON)
 		).andExpect(status().isOk()).andReturn();
 
-		mock.perform(get("/api/v1/healthplan" + jsonObject.getString("id")))
+		mock.perform(get("/api/v1/healthplan/" + jsonObject.getString("id")))
 			.andExpect(status().isOk())
 			.andExpect(jsonPath("$.name", is("SUS")));
 
-		mock.perform(delete("/api/v1/healthplan" + jsonObject.getString("id")))
+		mock.perform(delete("/api/v1/healthplan/" + jsonObject.getString("id")))
 			.andExpect(status().isAccepted());
 	}
 
@@ -163,30 +163,30 @@ class Apidacs2022ApplicationTests {
 	void procedureControllerApiTest() throws Exception {
 		MvcResult mvcResult = mock.perform(
 			post("/api/v1/procedure")
-			.content("{\"name\":\"NOME PADRAO\", \"description\":\"DESCRICAO PADRAO\"}")
+			.content("{\"title\":\"NOME PADRAO\", \"description\":\"DESCRICAO PADRAO\"}")
 			.contentType(MediaType.APPLICATION_JSON)
 		).andExpect(status().isCreated()).andReturn();
 
 		String result = mvcResult.getResponse().getContentAsString();
 		JSONObject jsonObject = new JSONObject(result);
 
-		mock.perform(get("/api/v1/procedure" + jsonObject.getString("id")))
+		mock.perform(get("/api/v1/procedure/" + jsonObject.getString("id")))
 			.andExpect(status().isOk())
-			.andExpect(jsonPath("$.name", is("NOME PADRAO")))
+			.andExpect(jsonPath("$.title", is("NOME PADRAO")))
 			.andExpect(jsonPath("$.description", is("DESCRICAO PADRAO")));
 
 		mock.perform(
-			put("/api/v1/procedure" + jsonObject.getString("id"))
-			.content("{\"name\":\"NOME\", \"description\":\"DESCRICAO\"}")
+			put("/api/v1/procedure/" + jsonObject.getString("id"))
+			.content("{\"title\":\"NOME\", \"description\":\"DESCRICAO\"}")
 			.contentType(MediaType.APPLICATION_JSON)
 		).andExpect(status().isOk()).andReturn();
 
-		mock.perform(get("/api/v1/procedure" + jsonObject.getString("id")))
+		mock.perform(get("/api/v1/procedure/" + jsonObject.getString("id")))
 			.andExpect(status().isOk())
-			.andExpect(jsonPath("$.name", is("NOME")))
+			.andExpect(jsonPath("$.title", is("NOME")))
 			.andExpect(jsonPath("$.description", is("DESCRICAO")));
 
-		mock.perform(delete("/api/v1/procedure" + jsonObject.getString("id")))
+		mock.perform(delete("/api/v1/procedure/" + jsonObject.getString("id")))
 			.andExpect(status().isAccepted());
 	}
 }

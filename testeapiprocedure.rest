@@ -1,0 +1,33 @@
+GET http://localhost:8081/api/v1/procedure
+
+###
+
+GET http://localhost:8081/api/v1/procedure/title/M
+
+###
+
+GET http://localhost:8081/api/v1/procedure/1
+
+###
+
+POST http://localhost:8081/api/v1/procedure
+Content-Type: application/json
+
+{
+    "title": "Teste",
+    "description": "Descricao"
+}
+
+###
+
+PUT http://localhost:8081/api/v1/procedure/1
+Content-Type: application/json
+
+{
+    "title": "Teste 2",
+    "description": "Descricao 2"
+}
+
+###
+
+DELETE http://localhost:8081/api/v1/procedure/1

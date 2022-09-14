@@ -42,7 +42,7 @@ public class HealthPlanControllerApi {
         return new ResponseEntity<HealthPlan>(healthPlan, HttpStatus.OK);
     }
 
-    @PostMapping("/{id}")
+    @PostMapping
     public ResponseEntity<HealthPlan> insertHealthPlan(@RequestBody HealthPlan healthPlan) {
         if (healthPlan.getId() == 0) {
             service.save(healthPlan);
