@@ -42,6 +42,16 @@
             "projectName": "apidacs2022",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-Coredacs2022Application<coredacs2022>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "br.univille.coredacs2022.Coredacs2022Application",
+            "projectName": "coredacs2022",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }

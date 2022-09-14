@@ -1,0 +1,33 @@
+GET http://localhost:8081/api/v1/doctor
+
+###
+
+GET http://localhost:8081/api/v1/doctor/name/M
+
+###
+
+GET http://localhost:8081/api/v1/doctor/1
+
+###
+
+POST http://localhost:8081/api/v1/doctor
+Content-Type: application/json
+
+{
+    "name": "Ramon Victor",
+    "crm": 4459
+}
+
+###
+
+PUT http://localhost:8081/api/v1/doctor/1
+Content-Type: application/json
+
+{
+    "name": "Melissa Nied",
+    "crm": 389
+}
+
+###
+
+DELETE http://localhost:8081/api/v1/doctor/1

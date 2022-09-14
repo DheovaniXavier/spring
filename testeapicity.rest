@@ -1,0 +1,33 @@
+GET http://localhost:8081/api/v1/city
+
+###
+
+GET http://localhost:8081/api/v1/city/name/Jo
+
+###
+
+GET http://localhost:8081/api/v1/city/2
+
+###
+
+POST http://localhost:8081/api/v1/city
+Content-Type: application/json
+
+{
+    "name": "Joinville",
+    "sex": "SC"
+}
+
+###
+
+PUT http://localhost:8081/api/v1/city/3
+Content-Type: application/json
+
+{
+    "name": "Blumenau",
+    "sex": "SC"
+}
+
+###
+
+DELETE http://localhost:8081/api/v1/city/2

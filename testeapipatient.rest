@@ -1,0 +1,35 @@
+GET http://localhost:8081/api/v1/patients
+
+###
+
+GET http://localhost:8081/api/v1/patients/name/ze
+
+###
+
+GET http://localhost:8081/api/v1/patients/1
+
+###
+
+POST http://localhost:8081/api/v1/patients
+Content-Type: application/json
+
+{
+    "name": "Ramon Victor",
+    "sex": "MASC",
+    "birthDate": "2022-08-17T00:00:00"
+}
+
+###
+
+PUT http://localhost:8081/api/v1/patients/1
+Content-Type: application/json
+
+{
+    "name": "Melissa Nied",
+    "sex": "FEM",
+    "birthDate": "2022-08-16T00:00:00"
+}
+
+###
+
+DELETE http://localhost:8081/api/v1/patients/1
