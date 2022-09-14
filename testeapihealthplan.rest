@@ -1,0 +1,31 @@
+GET http://localhost:8081/api/v1/healthplan
+
+###
+
+GET http://localhost:8081/api/v1/healthplan/title/UNI
+
+###
+
+GET http://localhost:8081/api/v1/healthplan/6
+
+###
+
+POST http://localhost:8081/api/v1/healthplan
+Content-Type: application/json
+
+{
+    "name": "SUS"
+}
+
+###
+
+PUT http://localhost:8081/api/v1/healthplan/6
+Content-Type: application/json
+
+{
+    "name": "UNIMED"
+}
+
+###
+
+DELETE http://localhost:8081/api/v1/healthplan/1

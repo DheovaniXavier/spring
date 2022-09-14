@@ -6,7 +6,7 @@ GET http://localhost:8081/api/v1/procedure/title/M
 
 ###
 
-GET http://localhost:8081/api/v1/procedure/1
+GET http://localhost:8081/api/v1/procedure/2
 
 ###
 
@@ -20,7 +20,7 @@ Content-Type: application/json
 
 ###
 
-PUT http://localhost:8081/api/v1/procedure/1
+PUT http://localhost:8081/api/v1/procedure/3
 Content-Type: application/json
 
 {
@@ -30,4 +30,4 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:8081/api/v1/procedure/1
+DELETE http://localhost:8081/api/v1/procedure/3
