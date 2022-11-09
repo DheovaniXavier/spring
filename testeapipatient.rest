@@ -1,17 +1,36 @@
+# @name loginAPI
+POST http://localhost:8081/api/v1/auth/signin 
+content-type: application/json
+
+{
+    "user": "admin",
+    "password": "admin"
+}
+
+###
+
+@token = {{loginAPI.response.body.*}}
+
+###
+
 GET http://localhost:8081/api/v1/patients
+Authorization: Bearer {{token}}
 
 ###
 
 GET http://localhost:8081/api/v1/patients/name/ze
+Authorization: Bearer {{token}}
 
 ###
 
 GET http://localhost:8081/api/v1/patients/1
+Authorization: Bearer {{token}}
 
 ###
 
 POST http://localhost:8081/api/v1/patients
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
     "name": "Ramon Victor",
@@ -23,6 +42,7 @@ Content-Type: application/json
 
 PUT http://localhost:8081/api/v1/patients/1
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
     "name": "Melissa Nied",
@@ -33,3 +53,15 @@ Content-Type: application/json
 ###
 
 DELETE http://localhost:8081/api/v1/patients/1
+Authorization: Bearer {{token}}
+
+###
+
+POST http://localhost:8081/api/v1/auth/signin
+content-type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "user": "admin",
+    "password": "admin"
+}

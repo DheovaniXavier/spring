@@ -1,17 +1,36 @@
+# @name loginAPI
+POST http://localhost:8081/api/v1/auth/signin 
+content-type: application/json
+
+{
+    "user": "admin",
+    "password": "admin"
+}
+
+###
+
+@token = {{loginAPI.response.body.*}}
+
+###
+
 GET http://localhost:8081/api/v1/healthplan
+Authorization: Bearer {{token}}
 
 ###
 
 GET http://localhost:8081/api/v1/healthplan/title/UNI
+Authorization: Bearer {{token}}
 
 ###
 
 GET http://localhost:8081/api/v1/healthplan/6
+Authorization: Bearer {{token}}
 
 ###
 
 POST http://localhost:8081/api/v1/healthplan
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
     "name": "SUS"
@@ -21,6 +40,7 @@ Content-Type: application/json
 
 PUT http://localhost:8081/api/v1/healthplan/6
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
     "name": "UNIMED"
@@ -29,3 +49,4 @@ Content-Type: application/json
 ###
 
 DELETE http://localhost:8081/api/v1/healthplan/1
+Authorization: Bearer {{token}}
