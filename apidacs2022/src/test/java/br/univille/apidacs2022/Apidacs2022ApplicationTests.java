@@ -43,13 +43,18 @@ class Apidacs2022ApplicationTests {
 			.content("{\"user\":\"admin\",\"password\":\"admin\"}")
 			.contentType(MediaType.APPLICATION_JSON)
 		).andExpect(status().isOk()).andReturn();
-		jwtToken = resultAuth.getResponse().getContentAsString();
-		
-		assertTrue(!jwtToken.isBlank() && !jwtToken.isEmpty());
+		jwtToken = resultAuth.getResponse().getContentAsString();		
 	}
 
 	@Test
 	void cityControllerApiTest() throws Exception {
+		MvcResult resultAuth =  mock.perform(
+			post("/api/v1/auth/signin")
+			.content("{\"user\":\"admin\",\"password\":\"admin\"}")
+			.contentType(MediaType.APPLICATION_JSON)
+		).andExpect(status().isOk()).andReturn();
+		jwtToken = resultAuth.getResponse().getContentAsString();
+
 		MvcResult mvcResult = mock.perform(
 			post("/api/v1/city")
 			.content("{\"name\":\"Joinville\", \"state\":\"SC\"}")
@@ -85,6 +90,13 @@ class Apidacs2022ApplicationTests {
 
 	@Test
 	void doctorControllerApiTest() throws Exception {
+		MvcResult resultAuth =  mock.perform(
+			post("/api/v1/auth/signin")
+			.content("{\"user\":\"admin\",\"password\":\"admin\"}")
+			.contentType(MediaType.APPLICATION_JSON)
+		).andExpect(status().isOk()).andReturn();
+		jwtToken = resultAuth.getResponse().getContentAsString();
+
 		MvcResult mvcResult = mock.perform(
 			post("/api/v1/doctor")
 			.content("{\"name\":\"Paulo\", \"crm\":\"4592\"}")
@@ -121,6 +133,13 @@ class Apidacs2022ApplicationTests {
 
 	@Test
 	void healthPlanControllerApiTest() throws Exception {
+		MvcResult resultAuth =  mock.perform(
+			post("/api/v1/auth/signin")
+			.content("{\"user\":\"admin\",\"password\":\"admin\"}")
+			.contentType(MediaType.APPLICATION_JSON)
+		).andExpect(status().isOk()).andReturn();
+		jwtToken = resultAuth.getResponse().getContentAsString();
+
 		MvcResult mvcResult = mock.perform(
 			post("/api/v1/healthplan")
 			.content("{\"name\":\"UNIMED\"}")
@@ -155,6 +174,13 @@ class Apidacs2022ApplicationTests {
 
 	@Test
 	void patientControllerApiTest() throws Exception {
+		MvcResult resultAuth =  mock.perform(
+			post("/api/v1/auth/signin")
+			.content("{\"user\":\"admin\",\"password\":\"admin\"}")
+			.contentType(MediaType.APPLICATION_JSON)
+		).andExpect(status().isOk()).andReturn();
+		jwtToken = resultAuth.getResponse().getContentAsString();
+
 		MvcResult mvcResult = mock.perform(
 			post("/api/v1/patients")
 			.content("{\"name\":\"Zezinho\", \"sex\":\"MASC\"}")
@@ -190,6 +216,13 @@ class Apidacs2022ApplicationTests {
 
 	@Test
 	void procedureControllerApiTest() throws Exception {
+		MvcResult resultAuth =  mock.perform(
+			post("/api/v1/auth/signin")
+			.content("{\"user\":\"admin\",\"password\":\"admin\"}")
+			.contentType(MediaType.APPLICATION_JSON)
+		).andExpect(status().isOk()).andReturn();
+		jwtToken = resultAuth.getResponse().getContentAsString();
+
 		MvcResult mvcResult = mock.perform(
 			post("/api/v1/procedure")
 			.content("{\"title\":\"NOME PADRAO\", \"description\":\"DESCRICAO PADRAO\"}")
