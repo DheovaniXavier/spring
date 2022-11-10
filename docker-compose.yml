@@ -8,10 +8,10 @@ services:
       MYSQL_USER: 'admin'
       MYSQL_PASSWORD: 'root'
       MYSQL_ROOT_PASSWORD: 'root'
-    # ports:
-    #   - '3306:3306'
-    # expose:
-    #   - '3306'
+    ports:
+      - '3317:3306'
+    expose:
+      - '3317'
   webdacsdheovani:
     image: dheovanidacs2022:latest
     depends_on:
@@ -19,7 +19,7 @@ services:
     ports:
       - "8092:8081"
     environment:
-      - DB_HOST=dbdheovani
+      - DB_HOST=dbdheovani:3317
       - DB_USER=root
       - DB_PASSWORD=root
       - DB_NAME=dacs2022
